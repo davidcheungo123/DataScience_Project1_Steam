@@ -178,6 +178,68 @@ def GetPlayerSummaries(steamId):
 
 3. **Main()**
    - Using for loop to loop over the steamIds generated from above section and store information to lists by pulling data via steamAPI. Finally, put all lists into a dataframe and finally output a txt or csv file.
+```
+def main():
+
+    gameCount = []
+    recentlyPlayed = []
+    playTime = []
+    location = []
+
+    with open('./data/realFinalFinal.txt', "r") as f:
+        userIdList = f.readlines()
+
+    counter = 0
+    for userId in userIdList:
+        counter +=1
+        if counter == 5000:
+            break
+        try:
+            result = GetRecentlyPlayedGames(int(userId))
+            gameCount.append(result[0])
+            recentlyPlayed.append(result[1])
+            playTime.append(returnPlayTime(int(userId)))
+            location.append(GetPlayerSummaries(userId))
+        except:
+            gameCount.append(np.nan)
+            recentlyPlayed.append(np.nan)
+            playTime.append(np.nan)
+            location.append(np.nan)
+
+    d = {"SteamID" : pd.Series(userId), "Game_Count" : pd.Series(gameCount), "Game_List" : pd.Series(recentlyPlayed),
+    
+        "TotalPlayTime" : playTime, "Location" : location}
+
+    df = pd.DataFrame(d)
+
+    df.to_csv("./output1.txt")
+        
+if __name__ == "__main__":
+    main()
+```
+
+## Data Visualisation and Insights
+We first compiled our data in csv file, output as a dataframe via Panda and Seaborn. With existing 5000 valid Steam ID, we managed to plot 3 graphs to share our insights.
+
+### Graph 1: The graph reflects gamers' habit
+<p align="center"><img  src="./images/5.png" alt="Steam Logo" width="700"/></p>
+
+### Graph 2: Counts vs Locations
+<p align="center"><img  src="./images/6.png" alt="Steam Logo" width="700"/></p>
+
+Suggestions: We suggest to include English, Russian, and Madarin as languages variations to game development as US, Russia, and China, has the most populated concentrated players.
+
+### Graph 3: Pie Chart
+<p align="center"><img  src="./images/7.png" alt="Steam Logo" width="700"/></p>
+
+Suggestions: Please consider to continue to develop Steam online games in the US region, a potential lightly tapped market. Even though the revenue growth is higher in Russia and China, we suggested the US region due to its consistent revenue growth with *+7.3%* growth on the year 2020, high spending power, and a leading game industry (as well as a profession).
+
+## Moving Forward
+Gaming is  a booming industry with wide room for growth. The rapid rise of technology will bring the industry to other realms such as cloud gaming, VR (virtual reality) gaming, and AR (augmented reality) gaming.
+
+In order to target the gaming industry, from a marketing point of view, we suggest to target on a personal approach with similar concepts such as Instagram hashtags. Scraping game player keywords such as “game soundtrack”, “story rich”, “female protagonist” on strategy game genre, for example.
+
+Such content will be easier to find by speaking the customer’s language.
 
 
 
