@@ -19,3 +19,38 @@ The motivation of this project is to retrieve, process and analyse data via Stea
 
 ### Dataset-Steam API
 Steam is the ultimate destination for playing, discussing, and creating games. To date, it has 32,000 total games with 26 million users. Our suggestion is with its large users database, it is an under tapped industry with a huge raw database to inform valuable decisions.
+
+<p align="center"><img  src="./images/2.png" alt="Steam Logo" width="500"/></p>
+
+## Data Collection Strategy
+In general, we source for the key and SteamID, input into *3 APIs* and generate userdata for data analysis and visualisation. 
+
+<p align="center"><img  src="./images/3.png" alt="Framework" width="800"/></p>
+
+### Coding
+1. Generating valid steamID
+   - In order to generate sufficient valid Ids for analysis, which should represent public users that contain location information, we create a helper function named              *“GetPlayerSummaries”*.
+```
+def GetPlayerSummaries(steamId):
+    steamId = str(steamId)
+    params = {
+        "steamids" : steamId
+    }
+    try:
+        url = requests.get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=72797CA67785C46C4DDB70C6F4C295D3&format=json" ,params=params)
+        data = json.loads(url.text)
+        if data["response"]["players"][0]["loccountrycode"] is not None:
+            return True
+        else:
+            return False
+    except:
+        return False
+```
+- This function will return boolean value given a particular steamId, if return True, we will add that particular steamId to a list and ultimately save the steamIds in that list to a txt document.
+
+We define another function named “steamid_to_64bit” that will change "STEAM_X:Y:Z" format into 64 bits format, which is more convenient for further analysis. Details about patterns of steamIds can click <a href="https://developer.valvesoftware.com/wiki/SteamID" target="_blank">Steam ID</a>:
+
+
+
+
+
