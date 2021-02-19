@@ -5,3 +5,6 @@ For the past decade, the shift from physical to digital has been very disruptive
 Gone are the days when gaming was an activity to pass the time. The game culture has grown out of its niche community, which brings different perspectives in profit-generating channels from merchandising to live events, streaming services, online advertising, and brand endorsement; literally taking the game to the center stage with a global audience1.
 
 With two major catalysts 1) the network effect and 2) the fast network which made streaming game services feasible, video game industry has easily outpaced their contemporaries in the film and music industry, with below graph showing direct consumer spending as the highest within the gaming sector.
+
+<img  src="./images/1.png" alt="market trending" width="300"/>
+
