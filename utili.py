@@ -1,6 +1,5 @@
 import requests
 import json
-import re
 import numpy as np
 
 def GetRecentlyPlayedGames(steamid):
@@ -28,7 +27,6 @@ def GetRecentlyPlayedGames(steamid):
                 playtime_2w = d["response"]["games"][i]["playtime_2weeks"]
 
                 RecentlyPlayedGame_Dict[gameID] = [game_name,playtime_2w]
-                # RecentlyPlayedGame_Dict[gameID] = playtime_2w
     except:
         RecentlyPlayedGame_Dict = {}
 
@@ -74,7 +72,6 @@ def GetPlayerSummaries(steamId):
             "key" : "72797CA67785C46C4DDB70C6F4C295D3"
         }
         url = requests.get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/" ,params=params)
-        # print(url)
         data = json.loads(url.text)
         return data["response"]["players"][0]["loccountrycode"]
     except:
