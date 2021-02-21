@@ -4,7 +4,7 @@ import numpy as np
 
 def GetRecentlyPlayedGames(steamid):
     #steamid	uint64	✔	The player we're asking about
-    url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=72797CA67785C46C4DDB70C6F4C295D3&format=json"
+    url = "http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=<key>&format=json"
 
     params={
     'steamid':steamid,
@@ -40,7 +40,7 @@ def returnPlayTime(steamId):
     #32196D5A386BD32E48454D8C69AC2C43
     params = {
         "steamid" : int(steamId),
-        "key" : "32196D5A386BD32E48454D8C69AC2C43",
+        "key" : "<key>",
         "include_appinfo" : True,
         "include_played_free_games" : True
     }
@@ -69,7 +69,7 @@ def GetPlayerSummaries(steamId):
         steamId = str(steamId)
         params = {
             "steamids" : steamId,
-            "key" : "72797CA67785C46C4DDB70C6F4C295D3"
+            "key" : "<key>"
         }
         url = requests.get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/" ,params=params)
         data = json.loads(url.text)

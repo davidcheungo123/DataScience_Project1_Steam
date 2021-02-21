@@ -15,7 +15,7 @@ def GetPlayerSummaries(steamId):
         "steamids" : steamId
     }
     try:
-        url = requests.get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=72797CA67785C46C4DDB70C6F4C295D3&format=json" ,params=params)
+        url = requests.get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=<key>&format=json" ,params=params)
         data = json.loads(url.text)
         if data["response"]["players"][0]["loccountrycode"] is not None:
             return True
